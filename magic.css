@@ -1,0 +1,300 @@
+/*
+*	Planet	  Period of Revolution
+*	
+*	Mercury	  88 days
+*	Venus	  224.7 days
+*	Earth	  365 days
+*	Mars   	  687 days
+*	Jupiter	  11.9 years = 4331 days
+*	Saturn	  29.5 years = 10747 days
+*	Uranus	  84 years = 30589 days
+*	Neptune	  164.8 years = 59802 days
+*	Pluto	  247.7 years = 90580 days
+* 
+*   Moon      27 days
+*
+*	https://people.southwestern.edu/~kamenm/auburn/w00harris.html
+*/
+
+:root {
+	--coef: 10;
+	
+	--mercury-speed: calc(88s/365.2563);
+	--venus-speed: calc(224.7s/365.2563);
+	--earth-speed: 1s;
+	--mars-speed: calc(687s/365.2563);
+	--jupiter-speed: calc(4331s/365.2563);
+	--saturn-speed: calc(10747s/365.2563);
+	--uranus-speed: calc(30589s/365.2563);
+	--neptune-speed: calc(59802s/365.2563);
+	--pluto-speed: calc(90580s/365.2563);
+	
+	--moon-speed: calc(27s/365.2563);
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	background: #00001a;
+	background-attachment: fixed;
+}
+
+/*
+*
+*	Solar system general setup:
+*	- making it centered
+*	- styling the orbits
+*	- making the planets visible
+*
+*/
+
+.solar-system {
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+}
+.solar-system div {
+	position: absolute;
+	z-index: 1000;
+	top: 50%;
+	left: 50%;
+	border: 1px;
+	border-style: dashed;
+	border-radius: 1000px;
+	border-color: rgba(255, 255, 255, 0.1);
+}
+.solar-system div:before {
+	position: absolute;
+	content: "";
+	left: 50%;
+	border-radius: 1000px;
+}
+
+/*
+*	Planet set up
+*/
+
+.sun {
+	height: 50px;
+	width: 50px;
+	margin-top: -25px;
+	margin-left: -25px;
+	
+	background: #e6b800;
+	box-shadow: 0 0 8px 8px rgba(255, 153, 51, 0.1);
+}
+
+
+.mercury {
+	height: 80px;
+	width: 80px;
+	margin-top: -40px;
+	margin-left: -40px;
+	
+	animation: rotate-planets calc(var(--mercury-speed)*var(--coef)) linear infinite;
+}
+.mercury:before {
+	height: 6px;
+	width: 6px;
+	margin-top: -4px;
+	margin-left: -4px;
+  
+	background: #a46228;
+}
+
+
+.venus {
+	height: 110px;
+	width: 110px;
+	margin-top: -55px;
+	margin-left: -55px;
+  
+	animation: rotate-planets calc(var(--venus-speed)*var(--coef)) linear infinite;
+}
+.venus:before {
+	height: 12px;
+	width: 12px;
+	margin-top: -6px;
+	margin-left: -6px;
+	
+	background: #c2bb70;
+}
+
+
+.earth {
+	height: 160px;
+	width: 160px;
+	margin-top: -80px;
+	margin-left: -80px;
+  
+	animation: rotate-planets calc(var(--earth-speed)*var(--coef)) linear infinite;
+}
+.earth:before {
+	height: 9px;
+	width: 9px;
+	margin-top: -4.5px;
+	margin-left: -4.5px;
+	
+	background: #12afed;
+}
+/*
+*	Setting up the Moon
+*/
+.earth:after {
+	position: absolute;
+	content: "";
+  
+	height: 20px;
+	width: 20px;
+	left: 50%;
+	top: 0px;
+	margin-left: -9px;
+	margin-top: -9px;
+  
+	border-radius: 100px;
+	box-shadow: 0 -12px 0 -8px #8c8c8c;
+	
+	animation: rotate-planets calc(var(--moon-speed)*var(--coef)) linear infinite;
+}
+
+
+.mars {
+	height: 210px;
+	width: 210px;
+	margin-top: -105px;
+	margin-left: -105px;
+	
+	animation: rotate-planets calc(var(--mars-speed)*var(--coef)) linear infinite;
+}
+.mars:before {
+	height: 9px;
+	width: 9px;
+	margin-top: -4.5px;
+	margin-left: -4.5px;
+
+	background: #db3c24;
+}
+
+
+.jupiter {
+	height: 350px;
+	width: 350px;
+	margin-top: -175px;
+	margin-left: -175px;
+	
+	animation: rotate-planets calc(var(--jupiter-speed)*var(--coef)) linear infinite;
+}
+.jupiter:before {
+	height: 27px;
+	width: 27px;
+	margin-top: -13.5px;
+	margin-left: -13.5px;
+	
+	background: #d2742d;
+}
+
+
+.saturn {
+	height: 450px;
+	width: 450px;
+	margin-top: -222px;
+	margin-left: -222px;
+	
+	animation: rotate-planets calc(var(--saturn-speed)*var(--coef)) linear infinite;
+}
+.saturn:before {
+	height: 18px;
+	width: 18px;
+	margin-top: -9px;
+	margin-left: -9px;
+	
+	background: #e3b782;
+}
+/*
+*	Setting up the Ring
+*/
+.saturn:after {
+	position: absolute;
+	content: "";
+	height: 2%;
+	width: 4.5%;
+	left: 50%;
+	top: 0px;
+	margin-left: -2.3%;
+	margin-top: -1.2%;
+  
+	border-radius: 50% 50% 50% 50%;
+	box-shadow: 0 1px 0 1px #a17d45;
+  
+	animation: rotate-planets calc(var(--saturn-speed)*var(--coef)) linear infinite;
+	animation-direction: reverse;
+	transform-origin: 52% 60%;
+}
+
+
+.uranus {
+	height: 530px;
+	width: 530px;
+	margin-top: -265px;
+	margin-left: -265px;
+	
+	animation: rotate-planets calc(var(--uranus-speed)*var(--coef)) linear infinite;
+}
+.uranus:before {
+	height: 15px;
+	width: 15px;
+	margin-top: -7.5px;
+	margin-left: -7.5px;
+	
+	background: #c8eaea;
+}
+
+
+.neptune {
+	height: 640px;
+	width: 640px;
+	margin-top: -320px;
+	margin-left: -320px;
+  
+	animation: rotate-planets calc(var(--neptune-speed)*var(--coef)) linear infinite;
+}
+.neptune:before {
+	height: 15px;
+	width: 15px;
+	margin-top: -7.5px;
+	margin-left: -7.5px;
+	
+	background: #196bb3;
+}
+
+
+.pluto {
+	height: 800px;
+	width: 800px;
+	margin-top: -400px;
+	margin-left: -400px;
+	
+	animation: rotate-planets calc(var(--pluto-speed)*var(--coef)) linear infinite;
+}
+.pluto:before {
+	height: 4.5px;
+	width: 4.5px;
+	margin-top: -2.25px;
+	margin-left: -2.25px;
+
+	background: #f2f2f2;
+}
+
+
+@keyframes rotate-planets {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
